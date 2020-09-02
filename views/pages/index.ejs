@@ -1,0 +1,160 @@
+<!-- index -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include ("../partials/head") %>
+  </head>
+
+  <body>
+    <header>
+      <%- include ("../partials/header") %>
+    </header>
+
+    <main>
+      <style>
+        html {
+          height: 100%;
+        }
+
+        body {
+          width: 100%;
+          background: linear-gradient(180deg, #8360c3 0%, #2ebf91 100%);
+        }
+
+        .container {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          -moz-transform: translateX(-50%) translateY(-50%);
+          -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+        }
+
+        .success {
+          letter-spacing: 2px;
+          line-height: 35px;
+          border-radius: 40px;
+          background: rgb(29, 185, 84);
+          transition: all 0.1s ease 0s;
+          border: 0;
+          padding-left: 2em;
+          padding-right: 2em;
+          /* letter-spacing: -0.05em; */
+        }
+
+        .btn-success:hover {
+          background: rgb(30, 215, 96);
+        }
+
+        .info {
+          letter-spacing: 2px;
+          line-height: 35px;
+          border-radius: 40px;
+          background: rgb(58, 149, 202);
+          transition: all 0.1s ease 0s;
+          border: 0;
+          padding-left: 2em;
+          padding-right: 2em;
+        }
+
+        .btn-info:hover {
+          background: rgb(7, 153, 238);
+        }
+
+        .circle-small {
+          background: linear-gradient(90deg, #2ebf91 0%, #8360c3 100%);
+          border-radius: 50%;
+          height: 15em;
+          width: 15em;
+          position: fixed;
+          left: 800px;
+          top: 2px;
+        }
+
+        .circle-medium {
+          background: linear-gradient(180deg, #2ebf91 0%, #8360c3 100%);
+          border-radius: 50%;
+          height: 35em;
+          width: 35em;
+          position: fixed;
+          left: 700px;
+          top: 200px;
+        }
+
+        .circle-medium2 {
+          background: linear-gradient(90deg, #2ebf91 0%, #8360c3 100%);
+          border-radius: 50%;
+          height: 35em;
+          width: 35em;
+          position: fixed;
+          left: 300px;
+          top: 250px;
+        }
+
+        .circle-large {
+          background: linear-gradient(270deg, #2ebf91 0%, #8360c3 100%);
+          border-radius: 50%;
+          height: 55em;
+          width: 55em;
+          position: fixed;
+          left: 1000px;
+          top: -200px;
+        }
+
+        html,
+        body {
+          overflow: hidden;
+        }
+      </style>
+
+      <body>
+        <header id="header" class="fixed-top" style="padding-top: 3.8em;">
+          <div class="container d-flex align-items-center">
+            <a href="/" class="logo mr-auto"> <img src="assets/img/logo.png" alt="" class="img-fluid" /></a>
+
+            <nav class="nav-menu d-none d-lg-block">
+              <ul>
+                <li class="active">
+                  <a href="/" style="font-family: gotham-medium;">Home</a>
+                </li>
+                <li>
+                  <a href="/about" style="font-family: gotham-medium;">About</a>
+                </li>
+                <li>
+                  <a href="/legal" style="font-family: gotham-medium;">Legal</a>
+                </li>
+              </ul>
+            </nav>
+            <!-- .nav-menu -->
+          </div>
+        </header>
+        <!-- End Header -->
+
+        <section>
+          <section class="bgimage text-center">
+            <p class="circle-medium circle"></p>
+            <p class="circle-medium2 circle"></p>
+            <p class="circle-large circle"></p>
+            <p class="circle-small circle"></p>
+            <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dynamics.js/1.1.5/dynamics.min.js"></script> -->
+            <div id="login" class="container container-fluid" style="color: white;">
+              <h1 class="jumbotron-heading" style="font-family: gotham; font-size: 4.5em; letter-spacing: -0.05em;">
+                Music to enjoy together.
+              </h1>
+              <p class="lead" style="font-family: gotham-medium; font-size: 1.1em; letter-spacing: -0.05em;">
+                Create and listen to Spotify music parties.
+              </p>
+              <a href="/login" class="shadow-none btn btn-raised btn-success success my-2" style="border-radius: 40px; font-family: gotham-medium;"> HOST A MUSIC PARTY</a>
+              <a href="/listen?code=<%= codeGiven %>" class="shadow-none btn btn-raised btn-info info my-2" style="border-radius: 40px; font-family: gotham-medium;"> JOIN A MUSIC PARTY</a>
+            </div>
+          </section>
+        </section>
+      </body>
+    </main>
+
+    <footer>
+      <%- include ("../partials/footer") %>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,171 @@
+<!-- host -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include ("../partials/head") %>
+  </head>
+
+  <header>
+    <%- include ("../partials/header") %>
+  </header>
+  <main>
+    <style>
+      html,
+      body {
+        overflow: hidden;
+      }
+
+      html {
+        height: 100%;
+      }
+
+      body {
+        width: 100%;
+        background: rgb(80, 155, 246);
+      }
+
+      .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -moz-transform: translateX(-50%) translateY(-50%);
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+      }
+
+      .success {
+        letter-spacing: 2px;
+        line-height: 35px;
+        border-radius: 40px;
+        background: rgb(29, 185, 84);
+        transition: all 0.1s ease 0s;
+        border: 0;
+        padding-left: 2em;
+        padding-right: 2em;
+        /* letter-spacing: -0.05em; */
+      }
+
+      .btn-success:hover {
+        background: rgb(30, 215, 96);
+      }
+
+      .info {
+        letter-spacing: 2px;
+        line-height: 35px;
+        border-radius: 40px;
+        background: #fc575e;
+        transition: all 0.1s ease 0s;
+        border: 0;
+        padding-left: 2em;
+        padding-right: 2em;
+      }
+
+      .btn-info:hover {
+        background: #f7b42c;
+      }
+
+      .flex {
+        display: flex;
+        flex-direction: row;
+      }
+    </style>
+
+    <script>
+      $(document).ready(function () {
+        new ClipboardJS(".btn");
+      });
+
+      var fixURL = refineURL();
+      window.history.pushState("object or string", "Title", "/" + fixURL);
+
+      function refineURL() {
+        var currURL = window.location.href;
+        var afterDomain = currURL.substring(currURL.lastIndexOf("/") + 1);
+        var beforeQueryString = afterDomain.split("?")[0];
+        return beforeQueryString;
+      }
+
+      function stopFullParty() {
+        document.getElementById("stopButton").disabled = true;
+        fetch("/stopfullparty", {
+          method: "POST",
+          body: JSON.stringify({ code: "<%= code %>", refresh: "<%= refresh %>" }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            console.log(data);
+            let alertType = data.status === 200 ? "alert-success" : "alert-danger";
+            $("#alert_placeholder").html(`<div class="alert ${alertType}" role="alert" style="font-family: gotham-medium;">${data.message}</div>`);
+            $("#errorAlert").remove();
+          });
+        return;
+      }
+    </script>
+
+    <body>
+      <header id="header" class="fixed-top" style="padding-top: 3.8em;">
+        <div class="container d-flex align-items-center">
+          <a href="/" class="logo mr-auto"> <img src="assets/img/logo.png" alt="" class="img-fluid" /></a>
+
+          <nav class="nav-menu d-none d-lg-block">
+            <ul>
+              <li class="active">
+                <a href="/" style="font-family: gotham-medium;">Home</a>
+              </li>
+              <li>
+                <a href="/about" style="font-family: gotham-medium;">About</a>
+              </li>
+              <li>
+                <a href="/legal" style="font-family: gotham-medium;">Legal</a>
+              </li>
+            </ul>
+          </nav>
+          <!-- .nav-menu -->
+        </div>
+      </header>
+      <!-- End Header -->
+      <section class="bgimage">
+        <div id="host" class="container container-fluid text-left" style="color: white;">
+          <div id="alert_placeholder"></div>
+          <% if (error) { %>
+          <div id="errorAlert" class="alert alert-warning" role="alert" style="font-family: gotham-medium;"><%= error %> with <%= listeners %> listeners.</div>
+          <%}%>
+          <h1 class="jumbotron-heading" style="font-family: gotham; font-size: 4.5em; letter-spacing: -0.02em;">
+            Let's get this party started
+          </h1>
+          <p class="lead" style="font-family: gotham-medium; font-size: 1.8em; letter-spacing: -0.05em;">
+            Share this code or link with your listeners:
+          </p>
+          <p class="lead" style="font-family: gotham-medium; font-size: 1.2em; letter-spacing: -0.05em;">
+            (No need to do anything else, the party will start automatically)
+          </p>
+          <div class="row">
+            <div class="col-3 input-group">
+              <input id="codeCopy" class="form-control" type="text" style="font-family: gotham-medium; background-color: white;" value="<%= code %>" readonly />
+              <button type="copyButton" class="btn btn-outline-light" style="background-color: white;" data-clipboard-action="copy" data-clipboard-target="#codeCopy">
+                <img src="assets/img/copy.svg" width="20" height="20" alt="Copy to clipboard" />
+              </button>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-7 input-group">
+              <input id="codeCopy1" class="form-control" type="text" style="font-family: gotham-medium; background-color: white;" value="https://listenalong.live/?code=<%= code %>" readonly />
+              <button type="copyButton" class="btn btn-outline-light" style="background-color: white;" data-clipboard-action="copy" data-clipboard-target="#codeCopy1">
+                <img src="assets/img/copy.svg" width="20" height="20" alt="Copy to clipboard" />
+              </button>
+            </div>
+          </div>
+          <button type="submit" id="stopButton" class="shadow-none btn btn-raised btn-info info my-2" style="border-radius: 40px; font-family: gotham-medium;" onclick="stopFullParty()">STOP PARTY</button>
+        </div>
+      </section>
+    </body>
+  </main>
+  <footer>
+    <%- include ("../partials/footer") %>
+  </footer>
+</html>

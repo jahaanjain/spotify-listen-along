@@ -1,0 +1,36 @@
+{
+  "name": "spotify-listen-along",
+  "version": "1.0.0",
+  "description": "Let people listen along to songs that you are listening to on Spotify",
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "got": "^11.5.1",
+    "mysql": "^2.18.1",
+    "mongodb": "^3.5.9",
+    "mysql2": "^2.1.0",
+    "pg": "^8.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jahaanjain/spotify-listen-along.git"
+  },
+  "keywords": [
+    "spotify",
+    "twitch",
+    "listen",
+    "along",
+    "dmca",
+    "listenalong"
+  ],
+  "author": "Jahaan Jain",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jahaanjain/spotify-listen-along/issues"
+  },
+  "homepage": "https://github.com/jahaanjain/spotify-listen-along#readme"
+}

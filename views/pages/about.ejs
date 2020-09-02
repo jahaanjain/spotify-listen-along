@@ -1,0 +1,212 @@
+<!-- listen -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include ("../partials/head") %>
+  </head>
+
+  <header>
+    <%- include ("../partials/header") %>
+  </header>
+
+  <main>
+    <style>
+      html,
+      /* body {
+        overflow: hidden;
+      } */
+
+      html {
+        height: 100%;
+      }
+
+      body {
+        width: 100%;
+        background: linear-gradient(180deg, rgba(249, 195, 71, 1) 0%, rgba(243, 110, 127, 1) 100%);
+      }
+
+      .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -moz-transform: translateX(-50%) translateY(-50%);
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+      }
+
+      .success {
+        letter-spacing: 2px;
+        line-height: 35px;
+        border-radius: 40px;
+        background: rgb(167, 29, 185);
+        transition: all 0.1s ease 0s;
+        border: 0;
+        padding-left: 2em;
+        padding-right: 2em;
+        /* letter-spacing: -0.05em; */
+      }
+
+      .btn-success:hover {
+        background: rgb(107, 0, 194);
+      }
+
+      .info {
+        letter-spacing: 2px;
+        line-height: 35px;
+        border-radius: 40px;
+        background: rgb(58, 149, 202);
+        transition: all 0.1s ease 0s;
+        border: 0;
+        padding-left: 2em;
+        padding-right: 2em;
+      }
+
+      .btn-info:hover {
+        background: rgb(1, 108, 170);
+      }
+
+      .flex {
+        display: flex;
+        flex-direction: row;
+      }
+
+      form {
+        overflow: hidden;
+      }
+      input {
+        float: right;
+        clear: both;
+      }
+
+      .circle-small {
+        background: linear-gradient(180deg, rgba(243, 110, 127, 1) 0%, rgba(249, 195, 71, 1) 100%);
+        border-radius: 50%;
+        height: 15em;
+        width: 15em;
+        position: fixed;
+        left: 200px;
+        top: 100px;
+      }
+
+      .circle-medium {
+        background: linear-gradient(180deg, rgba(243, 110, 127, 1) 0%, rgba(249, 195, 71, 1) 100%);
+        border-radius: 50%;
+        height: 35em;
+        width: 35em;
+        position: fixed;
+        left: 1000px;
+        top: 200px;
+      }
+
+      .circle-medium2 {
+        background: linear-gradient(180deg, rgba(243, 110, 127, 1) 0%, rgba(249, 195, 71, 1) 100%);
+        border-radius: 50%;
+        height: 35em;
+        width: 35em;
+        position: fixed;
+        left: 1200px;
+        top: 620px;
+      }
+
+      .circle-large {
+        background: linear-gradient(180deg, rgba(243, 110, 127, 1) 0%, rgba(249, 195, 71, 1) 100%);
+        border-radius: 50%;
+        height: 55em;
+        width: 55em;
+        position: fixed;
+        left: 200px;
+        top: 300px;
+      }
+    </style>
+
+    <body>
+      <header id="header" class="fixed-top" style="padding-top: 3.8em;">
+        <div class="container d-flex align-items-center">
+          <a href="/" class="logo mr-auto"> <img src="assets/img/logo.png" alt="" class="img-fluid" /></a>
+
+          <nav class="nav-menu d-none d-lg-block">
+            <ul>
+              <li>
+                <a href="/" style="font-family: gotham-medium;">Home</a>
+              </li>
+              <li class="active">
+                <a href="/about" style="font-family: gotham-medium;">About</a>
+              </li>
+              <li>
+                <a href="/legal" style="font-family: gotham-medium;">Legal</a>
+              </li>
+            </ul>
+          </nav>
+          <!-- .nav-menu -->
+        </div>
+      </header>
+
+      <section class="bgimage text-left">
+        <p class="circle-medium"></p>
+        <p class="circle-medium2"></p>
+        <p class="circle-large"></p>
+        <p class="circle-small"></p>
+        <div id="host" class="container container-fluid" style="color: white;">
+          <h1 class="jumbotron-heading" style="font-family: gotham; font-size: 1.5em; letter-spacing: -0.02em;">
+            About:
+          </h1>
+          <p class="lead" style="font-family: gotham-medium; font-size: 1em; letter-spacing: -0.05em;">
+            Listen Along is a website meant to let groups to connect in a way that people have been for hundreds of years, through music.
+            <br />
+            Using the software and power of Spotify, Listen Along allows groups of people to listen to a specific host's music for as long as they want.
+          </p>
+          <h1 class="jumbotron-heading" style="font-family: gotham; font-size: 1.5em; letter-spacing: -0.02em;">
+            FAQ:
+          </h1>
+          <p class="lead" style="font-family: gotham-medium; font-size: 1em; letter-spacing: -0.05em;">
+            Q: What are the site restrictions?
+            <br />
+            A: To HOST a Spotify music party, you can be premium or non-premium Spotify user.
+            <br />
+            A: To JOIN to a Spotify music party, you MUST be a Spotify Premium user.
+            <br />
+            <br />
+            Q: Why can't I hear any music after I input the host code?
+            <br />
+            A: Make sure that you have your Spotify app open, in some cases you should also listen to random music so that the website knows which device is active.
+            <br />
+            <br />
+            Q: How many people can join a music party?
+            <br />
+            A: Unlimited users can join! Or until Spotify starts rate limiting this website... 🤔
+            <br />
+            <br />
+            Q: Does the host code ever expire?
+            <br />
+            A: No, the host can invalidate their code by pressing the 'Stop Party' button.
+            <br />
+            <br />
+            Q: Where can I report bugs or submit feature requests?
+            <br />
+            A: You can message me on
+            <a href="https://twitter.com/RoaringIron" style="color: #2a2a72;" target="_blank">Twitter</a>
+            about anything related to Listen Along!
+          </p>
+
+          <h1 class="jumbotron-heading" style="font-family: gotham; font-size: 1.5em; letter-spacing: -0.02em;">
+            Socials:
+          </h1>
+          <p class="lead" style="font-family: gotham-medium; font-size: 1em; letter-spacing: -0.05em;">
+            You can follow me on social media to stay updated on new features:
+            <br />
+            Twitter:
+            <a href="https://twitter.com/RoaringIron" style="color: #2a2a72;" target="_blank">@roaringiron</a>
+            <br />
+            Website:
+            <a href="https://roaringiron.com" style="color: #2a2a72;" target="_blank">https://roaringiron.com</a>
+          </p>
+        </div>
+      </section>
+    </body>
+  </main>
+
+  <footer>
+    <%- include ("../partials/footer") %>
+  </footer>
+</html>

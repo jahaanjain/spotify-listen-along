@@ -1,0 +1,202 @@
+<!-- listen -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include ("../partials/head") %>
+  </head>
+
+  <header>
+    <%- include ("../partials/header") %>
+  </header>
+
+  <main>
+    <style>
+      html,
+      body {
+        overflow: hidden;
+      }
+
+      html {
+        height: 100%;
+      }
+
+      body {
+        width: 100%;
+        background: rgb(20, 183, 112);
+      }
+
+      .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -moz-transform: translateX(-50%) translateY(-50%);
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+      }
+
+      .success {
+        letter-spacing: 2px;
+        line-height: 35px;
+        border-radius: 40px;
+        background: rgb(167, 29, 185);
+        transition: all 0.1s ease 0s;
+        border: 0;
+        padding-left: 2em;
+        padding-right: 2em;
+        /* letter-spacing: -0.05em; */
+      }
+
+      .btn-success:hover {
+        background: rgb(107, 0, 194);
+      }
+
+      .info {
+        letter-spacing: 2px;
+        line-height: 35px;
+        border-radius: 40px;
+        background: rgb(58, 149, 202);
+        transition: all 0.1s ease 0s;
+        border: 0;
+        padding-left: 2em;
+        padding-right: 2em;
+      }
+
+      .btn-info:hover {
+        background: rgb(1, 108, 170);
+      }
+
+      .flex {
+        display: flex;
+        flex-direction: row;
+      }
+
+      form {
+        overflow: hidden;
+      }
+      input {
+        float: right;
+        clear: both;
+      }
+    </style>
+
+    <script>
+      var fixURL = refineURL();
+      window.history.pushState("object or string", "Title", "/" + fixURL);
+
+      function refineURL() {
+        var currURL = window.location.href;
+        var afterDomain = currURL.substring(currURL.lastIndexOf("/") + 1);
+        var beforeQueryString = afterDomain.split("?")[0];
+        return beforeQueryString;
+      }
+
+      function startParty() {
+        let code = document.getElementById("code").value;
+        if (!code || code.length !== 12) {
+          $("#alert_placeholder").html(`<div class="alert alert-danger" role="alert" style="font-family: gotham-medium;">Incorrect host code provided.</div>`);
+          return;
+        }
+        document.getElementById("startButton").disabled = true;
+        document.getElementById("stopButton").disabled = false;
+        fetch("/startparty", {
+          method: "POST",
+          body: JSON.stringify({ token: "<%= token %>", refresh: "<%= refresh %>", host: code }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            console.log(data);
+            let alertType = data.status === 200 ? "alert-success" : "alert-danger";
+            $("#alert_placeholder").html(`<div class="alert ${alertType}" role="alert" style="font-family: gotham-medium;">${data.message}</div>`);
+          });
+        return;
+      }
+
+      function stopParty() {
+        document.getElementById("startButton").disabled = false;
+        document.getElementById("stopButton").disabled = true;
+        fetch("/stopparty", {
+          method: "POST",
+          body: JSON.stringify({ token: "<%= token %>", refresh: "<%= refresh %>" }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            console.log(data);
+            let alertType = data.status === 200 ? "alert-success" : "alert-danger";
+            $("#alert_placeholder").html(`<div class="alert ${alertType}" role="alert" style="font-family: gotham-medium;">${data.message}</div>`);
+          });
+        return;
+      }
+    </script>
+
+    <body>
+      <header id="header" class="fixed-top" style="padding-top: 3.8em;">
+        <div class="container d-flex align-items-center">
+          <a href="/" class="logo mr-auto"> <img src="assets/img/logo.png" alt="" class="img-fluid" /></a>
+
+          <nav class="nav-menu d-none d-lg-block">
+            <ul>
+              <li class="active">
+                <a href="/" style="font-family: gotham-medium;">Home</a>
+              </li>
+              <li>
+                <a href="/about" style="font-family: gotham-medium;">About</a>
+              </li>
+              <li>
+                <a href="/legal" style="font-family: gotham-medium;">Legal</a>
+              </li>
+            </ul>
+          </nav>
+          <!-- .nav-menu -->
+        </div>
+      </header>
+
+      <section class="bgimage">
+        <div id="host" class="container container-fluid text-right" style="color: white;">
+          <div id="alert_placeholder"></div>
+          <% if (error) { %>
+          <div class="alert alert-warning" role="alert" style="font-family: gotham-medium;"><%= error %></div>
+          <%}%>
+          <h1 class="jumbotron-heading" style="font-family: gotham; font-size: 4.5em; letter-spacing: -0.02em;">
+            Let's join the party
+          </h1>
+          <p class="lead" id="enterCode" style="font-family: gotham-medium; font-size: 1.8em; letter-spacing: -0.05em;">
+            Enter the code you recieved from the party host below:
+          </p>
+          <form autocomplete="off">
+            <input type="text" class="form-control w-25" style="text-align: right; font-family: gotham-medium;" id="code" placeholder="Example: 216PNFCJc701" />
+
+            <% if (codeGiven) { %>
+            <script>
+              $("#code").val("<%= codeGiven %>");
+              $("#enterCode").text("Press the 'Start Listening Along' button below to join the party:");
+            </script>
+            <%}%>
+          </form>
+          <button type="submit" id="startButton" class="shadow-none btn btn-raised btn-success success my-2" style="border-radius: 40px; font-family: gotham-medium;" onclick="startParty()">START LISTENING ALONG</button>
+          <button type="submit" id="stopButton" class="shadow-none btn btn-raised btn-info info my-2" style="border-radius: 40px; font-family: gotham-medium;" onclick="stopParty()">STOP LISTENING ALONG</button>
+
+          <% if (error) { %>
+          <script>
+            document.getElementById("startButton").disabled = true;
+          </script>
+          <%}%>
+        </div>
+      </section>
+    </body>
+  </main>
+
+  <footer>
+    <%- include ("../partials/footer") %>
+  </footer>
+</html>
