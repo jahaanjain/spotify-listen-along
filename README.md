@@ -4,7 +4,7 @@ Listen Along is a website that lets users create and join music parties on Spoti
 
 ## Live Version
 
-The website [https://listenalong.live](https://listenalong.live) hosts a live version of this repository that can be used by anyone.
+The website [https://listenalong.roaringiron.com/](https://listenalong.roaringiron.com/) hosts a live version of this repository that can be used by anyone.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
