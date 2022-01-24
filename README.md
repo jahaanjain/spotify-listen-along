@@ -1,10 +1,12 @@
 # Listen Along for Spotify
+## No Longer Maintained!
+
 
 Listen Along is a website that lets users create and join music parties on Spotify.
 
-## Live Version
+## Screenshots
+![Homepage](https://i.imgur.com/UFyp8Gn.png)
 
-The website [https://listenalong.roaringiron.com/](https://listenalong.roaringiron.com/) hosts a live version of this repository that can be used by anyone.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
